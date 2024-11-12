@@ -31,7 +31,8 @@ function App({ pageTitle }: appProps) {
     // Verileri alıp objeye dönüştürdükten sonra İlk başta türü sıfırlayıp daha sonrasında User diye belirttik
     const contactFormDataObject = Object.fromEntries(
       contactFormData.entries()
-    ) as unknown as User & {
+      // Burda Tür never olarak gözükme sıkıntısı vardı Omit Kullanarak User obj içindeki age kaldırıp daha sonrasında tekrar string türünde verdik daha düzgün parça olarak eklemiş olduk
+    ) as unknown as Omit<User, "age"> & {
       age: string;
     };
 
